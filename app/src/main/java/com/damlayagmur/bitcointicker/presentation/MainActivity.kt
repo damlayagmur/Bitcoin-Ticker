@@ -1,5 +1,6 @@
 package com.damlayagmur.bitcointicker.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.LiveData
@@ -14,10 +15,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation {
-    private val binding by viewBinding(ActivityMainBinding::inflate)
 
+    private val binding by viewBinding(ActivityMainBinding::inflate)
     private var currentNavController: LiveData<NavController>? = null
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -25,6 +27,9 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
+
+        supportActionBar?.setDefaultDisplayHomeAsUpEnabled(false)
+        //supportActionBar?.setDisplayShowHomeEnabled(false)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -36,6 +41,9 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation {
         val navGraphIds =
             listOf(
                 R.navigation.app,
+                R.navigation.favorite,
+                R.navigation.main_nav_graph,
+                R.navigation.home
             )
 
         val controller = binding.bottomNav.setupWithNavController(
@@ -60,7 +68,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation {
     override fun navigateTop() {
         finish()
         startActivity(intent)
-        currentNavController?.value?.navigate(R.id.main)
+        currentNavController?.value?.navigate(R.id.app)
     }
 
     override fun setBottomBarVisibility(isVisible: Boolean) {
