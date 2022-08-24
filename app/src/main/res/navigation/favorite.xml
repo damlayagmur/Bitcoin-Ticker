@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/favorite"
+    app:startDestination="@id/loginFragment3">
+    <fragment
+        android:id="@+id/loginFragment3"
+        android:name="com.damlayagmur.bitcointicker.presentation.fragment.login.LoginFragment"
+        android:label="LoginFragment" />
+</navigation>
