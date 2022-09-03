@@ -8,6 +8,7 @@ import com.mikepenz.fastadapter.items.AbstractItem
 
 class CoinAdapter : AbstractItem<CoinAdapter.ViewHolder>() {
 
+    var id: String? = null
     var name: String? = null
     var desc: String? = null
 

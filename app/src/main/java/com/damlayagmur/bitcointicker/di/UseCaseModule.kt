@@ -1,7 +1,7 @@
 package com.damlayagmur.bitcointicker.di
 
 import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
-import com.damlayagmur.bitcointicker.domain.usecase.CoinUseCase
+import com.damlayagmur.bitcointicker.domain.usecase.GetCoinListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +16,5 @@ object UseCaseModule {
     @Singleton
     fun provideCoinUseCase(
         coinRepository: CoinRepository,
-    ) = CoinUseCase(coinRepository)
+    ) = GetCoinListUseCase(coinRepository)
 }

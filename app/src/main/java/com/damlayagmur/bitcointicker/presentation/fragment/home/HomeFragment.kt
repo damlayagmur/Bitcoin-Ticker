@@ -30,11 +30,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
         initComponents()
         observeModel()
-        coinViewModel.getCoinList()
     }
 
     private fun initComponents() {
-        binding.etSearch.doAfterTextChanged { coinViewModel.search(it.toString()) }
+        binding.etSearch.doAfterTextChanged { coinViewModel.searchCoin(it.toString()) }
+        binding.btnSearch.setOnClickListener {}
     }
 
     private fun observeModel() {
@@ -73,10 +73,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         binding.recyclerView.itemAnimator = DefaultItemAnimator()
 
         for (item in coins) {
-            val relative = CoinAdapter()
-            relative.name = item?.name ?: ""
-            relative.desc = item?.symbol ?: ""
-            fastConnectionsAdapter.add(relative)
+            val coin = CoinAdapter()
+            coin.id = item?.id ?: ""
+            coin.name = item?.name ?: ""
+            coin.desc = item?.symbol ?: ""
+            fastConnectionsAdapter.add(coin)
         }
     }
 }

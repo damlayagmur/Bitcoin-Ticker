@@ -8,18 +8,7 @@
         android:name="com.damlayagmur.bitcointicker.presentation.fragment.home.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_loginFragment22"
-            app:destination="@id/loginFragment2" />
-        <action
             android:id="@+id/action_homeFragment_to_main"
-            app:destination="@id/main" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment2"
-        android:name="com.damlayagmur.bitcointicker.presentation.fragment.login.LoginFragment"
-        android:label="LoginFragment" >
-        <action
-            android:id="@+id/action_loginFragment2_to_main"
             app:destination="@id/main" />
     </fragment>
     <include app:graph="@navigation/main_nav_graph" />
