@@ -1,3 +1,5 @@
 package com.damlayagmur.bitcointicker.data.model
 
-class Coin : ArrayList<CoinItem>()
+data class CoinDetail(
+    var id: String
+)
