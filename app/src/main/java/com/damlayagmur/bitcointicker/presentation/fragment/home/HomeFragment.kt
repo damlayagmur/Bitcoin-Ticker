@@ -21,8 +21,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // observeModel()
-       // coinViewModel.getCoinList()
+        observeModel()
+        coinViewModel.getCoinList()
     }
 
     private fun observeModel() {
@@ -33,9 +33,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 }
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.INVISIBLE
-                    if (it.data != null)
-                        binding.aaa.text = it.data.lastIndex.toString()
-                    //Toast.makeText(context, it.data.size.toString(), Toast.LENGTH_LONG).show()
 
                 }
                 is Resource.Error -> {

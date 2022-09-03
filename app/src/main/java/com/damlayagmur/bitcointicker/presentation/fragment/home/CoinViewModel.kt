@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.data.model.Coin
+import com.damlayagmur.bitcointicker.data.model.CoinItem
 import com.damlayagmur.bitcointicker.domain.usecase.CoinUseCase
 import com.damlayagmur.bitcointicker.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,8 +17,8 @@ class CoinViewModel @Inject constructor(
     private val coinUseCase: CoinUseCase
 ) : BaseViewModel() {
 
-    private val _coinList = MutableLiveData<Resource<List<Coin?>>>()
-    val coinListLiveData: LiveData<Resource<List<Coin?>>>
+    private val _coinList = MutableLiveData<Resource<List<CoinItem?>>>()
+    val coinListLiveData: LiveData<Resource<List<CoinItem?>>>
         get() = _coinList
 
     fun getCoinList() {
