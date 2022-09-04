@@ -23,8 +23,8 @@ class CoinAdapter : AbstractItem<CoinAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : FastAdapter.ViewHolder<CoinAdapter>(view) {
 
-        var tvName: TextView = view.findViewById(R.id.tvName)
-        var tvSymbol: TextView = view.findViewById(R.id.tvSymbol)
+        var tvName: TextView = view.findViewById(R.id.textView_name)
+        var tvSymbol: TextView = view.findViewById(R.id.textView_symbol)
 
         override fun bindView(item: CoinAdapter, payloads: List<Any>) {
             tvName.text = item.name
