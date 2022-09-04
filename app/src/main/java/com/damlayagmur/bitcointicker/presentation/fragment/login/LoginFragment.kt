@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.damlayagmur.bitcointicker.R
+import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.navigate
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.databinding.FragmentLoginBinding
@@ -32,6 +33,22 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         binding.btnRegister.setOnClickListener {
             navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
+        observeModel()
+    }
 
+    private fun observeModel() {
+        viewModel.user.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {
+
+                }
+                is Resource.Success -> {
+                    navigate(LoginFragmentDirections.actionLoginFragmentToHome())
+                }
+                is Resource.Error -> {
+
+                }
+            }
+        }
     }
 }

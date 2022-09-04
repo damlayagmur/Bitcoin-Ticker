@@ -3,10 +3,12 @@ package com.damlayagmur.bitcointicker.di
 import com.damlayagmur.bitcointicker.data.local.CoinDatabase
 import com.damlayagmur.bitcointicker.data.remote.CoinService
 import com.damlayagmur.bitcointicker.data.repository.CoinRepositoryImpl
+import com.damlayagmur.bitcointicker.data.repository.FirestoreRepository
 import com.damlayagmur.bitcointicker.data.repository.LoginRepository
 import com.damlayagmur.bitcointicker.data.repository.RegisterRepository
 import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,5 +35,14 @@ object RepositoryModule {
     @Singleton
     fun provideLoginRepository(firebaseAuth: FirebaseAuth): LoginRepository {
         return LoginRepository(firebaseAuth)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirestoreRepository(
+        firebaseAuth: FirebaseAuth,
+        firebaseFirestore: FirebaseFirestore
+    ): FirestoreRepository {
+        return FirestoreRepository(firebaseAuth, firebaseFirestore)
     }
 }

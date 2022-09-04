@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.damlayagmur.bitcointicker.R
+import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.databinding.FragmentRegisterBinding
 import com.damlayagmur.bitcointicker.presentation.base.BaseFragment
@@ -25,6 +26,21 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
                 binding.password.text.toString()
             )
         }
+        observeModel()
     }
 
+    private fun observeModel() {
+        viewModel.user.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {
+                }
+                is Resource.Success -> {
+                    requireActivity().onBackPressed()
+                }
+                is Resource.Error -> {
+
+                }
+            }
+        }
+    }
 }

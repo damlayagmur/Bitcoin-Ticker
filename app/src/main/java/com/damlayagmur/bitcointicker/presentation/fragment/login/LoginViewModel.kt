@@ -1,6 +1,5 @@
 package com.damlayagmur.bitcointicker.presentation.fragment.login
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -17,19 +16,20 @@ class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase
 ) : BaseViewModel() {
 
-    private val _user = MutableLiveData<Resource<EmailAuthResult>>()
-    val user: LiveData<Resource<EmailAuthResult>>
+    private val _user = MutableLiveData<Resource<Boolean>>()
+    val user: LiveData<Resource<Boolean>>
         get() = _user
 
 
     fun signInWithEmail(email: String, password: String) {
         viewModelScope.launch {
-            when (val result = loginUseCase.signInWithEmail(email, password)) {
+            _user.value = Resource.Loading()
+            when (loginUseCase.signInWithEmail(email, password)) {
                 is EmailAuthResult.UserSuccess -> {
-                    Log.d("TAG", "signInWithEmail: ")
+                    _user.value = Resource.Success(true)
                 }
                 is EmailAuthResult.UserFailure -> {
-                    Log.d("TAG", "signInWithEmail: ")
+                    _user.value = Resource.Error("Error")
                 }
             }
         }

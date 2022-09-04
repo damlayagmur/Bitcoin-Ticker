@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.viewBinding
+import com.damlayagmur.bitcointicker.data.model.FavoriteCoin
 import com.damlayagmur.bitcointicker.databinding.FragmentCoinDetailBinding
 import com.damlayagmur.bitcointicker.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +25,17 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
 
         coinDetailViewModel.getCoinDetail("0-5x-long-bitcoin-token")
         observeModel()
+
+        binding.btnFav.setOnClickListener {
+            var favCoin = FavoriteCoin(
+                coinId = "SACLARI",
+                name = "name",
+                description = "desc",
+                img = "img_url",
+                currentPrice = 1.1
+            )
+            coinDetailViewModel.addFavorite(favCoin)
+        }
     }
 
     private fun observeModel() {

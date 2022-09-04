@@ -1,8 +1,10 @@
 package com.damlayagmur.bitcointicker.di
 
-import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
+import com.damlayagmur.bitcointicker.data.repository.FirestoreRepository
 import com.damlayagmur.bitcointicker.data.repository.LoginRepository
 import com.damlayagmur.bitcointicker.data.repository.RegisterRepository
+import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
+import com.damlayagmur.bitcointicker.domain.usecase.AddFavoriteUseCase
 import com.damlayagmur.bitcointicker.domain.usecase.GetCoinListUseCase
 import com.damlayagmur.bitcointicker.domain.usecase.LoginUseCase
 import com.damlayagmur.bitcointicker.domain.usecase.RegisterUseCase
@@ -33,4 +35,10 @@ object UseCaseModule {
     fun provideLoginUseCase(
         loginRepository: LoginRepository,
     ) = LoginUseCase(loginRepository)
+
+    @Provides
+    @Singleton
+    fun provideAddFavoriteUseCase(
+        firestoreRepository: FirestoreRepository,
+    ) = AddFavoriteUseCase(firestoreRepository)
 }
