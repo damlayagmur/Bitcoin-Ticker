@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
 
-    private val coinViewModel: CoinViewModel by viewModels()
+    private val coinViewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,7 +80,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             val coin = CoinAdapter()
             coin.id = item?.id ?: ""
             coin.name = item?.name ?: ""
-            coin.desc = item?.symbol ?: ""
+            coin.symbol = item?.symbol ?: ""
             fastConnectionsAdapter.add(coin)
         }
     }

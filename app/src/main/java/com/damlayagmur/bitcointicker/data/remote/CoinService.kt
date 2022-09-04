@@ -10,7 +10,7 @@ interface CoinService {
     @GET("coins/list")
     suspend fun getCoinList(): List<CoinItem>
 
-    @GET("/coins/{id}")
+    @GET("coins/{id}")
     suspend fun getCoinDetail(
         @Path("id") id: String
     ): CoinDetail
