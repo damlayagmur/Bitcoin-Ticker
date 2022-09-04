@@ -2,6 +2,7 @@ package com.damlayagmur.bitcointicker.di
 
 import com.damlayagmur.bitcointicker.common.Constants
 import com.damlayagmur.bitcointicker.data.remote.CoinService
+import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +16,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
     @Provides
     @Singleton
