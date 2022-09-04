@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.adapter.CoinAdapter
 import com.damlayagmur.bitcointicker.common.Resource
+import com.damlayagmur.bitcointicker.common.navigate
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.data.model.CoinItem
 import com.damlayagmur.bitcointicker.databinding.FragmentHomeBinding
@@ -28,13 +29,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        mFragmentNavigation.setBottomBarVisibility(true)
         initComponents()
         observeModel()
     }
 
     private fun initComponents() {
         binding.etSearch.doAfterTextChanged { coinViewModel.searchCoin(it.toString()) }
-        binding.btnSearch.setOnClickListener {}
+        binding.btnSearch.setOnClickListener {
+            navigate(HomeFragmentDirections.actionHomeFragmentToCoinDetailFragment())
+        }
     }
 
     private fun observeModel() {

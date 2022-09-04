@@ -41,9 +41,8 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation {
         val navGraphIds =
             listOf(
                 R.navigation.app,
+                R.navigation.home,
                 R.navigation.favorite,
-                R.navigation.main_nav_graph,
-                R.navigation.home
             )
 
         val controller = binding.bottomNav.setupWithNavController(
@@ -54,7 +53,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentNavigation {
         )
 
         currentNavController = controller
-
     }
 
     override fun giveAction(action: Int) {

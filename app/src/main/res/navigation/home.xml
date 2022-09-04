@@ -9,11 +9,11 @@
         android:name="com.damlayagmur.bitcointicker.presentation.fragment.home.HomeFragment"
         android:label="HomeFragment" >
         <action
-            android:id="@+id/action_homeFragment_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+            android:id="@+id/action_homeFragment_to_coinDetailFragment"
+            app:destination="@id/coinDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/loginFragment2"
-        android:name="com.damlayagmur.bitcointicker.presentation.fragment.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:id="@+id/coinDetailFragment"
+        android:name="com.damlayagmur.bitcointicker.presentation.fragment.detail.CoinDetailFragment"
+        android:label="CoinDetailFragment" />
 </navigation>
