@@ -9,13 +9,12 @@ data class CoinEntity(
     @PrimaryKey val id: String,
     val symbol: String,
     val name: String,
-){
-    fun toItem(): CoinItem{
+) {
+    fun toItem(): CoinItem {
         return CoinItem(
             id = id,
             symbol = symbol,
             name = name,
-            //sourceUrls = sourceUrl
         )
     }
 }

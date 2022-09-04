@@ -4,7 +4,7 @@ import android.app.Activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.damlayagmur.bitcointicker.EmailAuthResult
+import com.damlayagmur.bitcointicker.common.EmailAuthResult
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.domain.usecase.RegisterUseCase
 import com.damlayagmur.bitcointicker.presentation.base.BaseViewModel

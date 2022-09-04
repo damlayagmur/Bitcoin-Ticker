@@ -1,6 +1,6 @@
 package com.damlayagmur.bitcointicker.domain.usecase
 
-import com.damlayagmur.bitcointicker.EmailAuthResult
+import com.damlayagmur.bitcointicker.common.EmailAuthResult
 import com.damlayagmur.bitcointicker.data.repository.LoginRepository
 import javax.inject.Inject
 import kotlin.coroutines.resume

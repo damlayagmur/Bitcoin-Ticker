@@ -1,4 +1,4 @@
-package com.damlayagmur.bitcointicker
+package com.damlayagmur.bitcointicker.common
 
 import com.google.firebase.auth.FirebaseUser
 

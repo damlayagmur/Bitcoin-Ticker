@@ -1,7 +1,7 @@
 package com.damlayagmur.bitcointicker.domain.usecase
 
 import android.app.Activity
-import com.damlayagmur.bitcointicker.EmailAuthResult
+import com.damlayagmur.bitcointicker.common.EmailAuthResult
 import com.damlayagmur.bitcointicker.data.repository.RegisterRepository
 import javax.inject.Inject
 import kotlin.coroutines.resume

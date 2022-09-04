@@ -9,5 +9,6 @@ import javax.inject.Inject
 class SearchCoinUseCase @Inject constructor(
     private val coinRepository: CoinRepository,
 ) {
-    suspend operator fun invoke(text: String): Flow<Resource<List<CoinItem>>> = coinRepository.searchCoin(text)
+    suspend operator fun invoke(text: String): Flow<Resource<List<CoinItem>>> =
+        coinRepository.searchCoin(text)
 }
