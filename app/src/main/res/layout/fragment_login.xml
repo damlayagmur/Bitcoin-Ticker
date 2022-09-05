@@ -12,13 +12,19 @@
     <EditText
         android:id="@+id/lmail"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp" />
+        android:layout_height="@dimen/_30sdp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:text="temp@temp.com" />
 
     <EditText
         android:id="@+id/lpassword"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_30sdp" />
+        android:layout_marginTop="@dimen/_30sdp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:text="temp12345" />
 
     <Button
         android:id="@+id/btn"

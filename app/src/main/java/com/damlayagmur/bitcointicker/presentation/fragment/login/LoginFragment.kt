@@ -2,6 +2,7 @@ package com.damlayagmur.bitcointicker.presentation.fragment.login
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.common.Resource
@@ -40,13 +41,20 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         viewModel.user.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
-
+                    //  binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
                     navigate(LoginFragmentDirections.actionLoginFragmentToHome())
                 }
                 is Resource.Error -> {
-
+                    //binding.progressBar.visibility = View.INVISIBLE
+                    it.errorMessage?.let { message ->
+                        Toast.makeText(
+                            context,
+                            message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
         }
