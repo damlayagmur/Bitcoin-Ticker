@@ -4,10 +4,7 @@ import com.damlayagmur.bitcointicker.data.repository.FirestoreRepository
 import com.damlayagmur.bitcointicker.data.repository.LoginRepository
 import com.damlayagmur.bitcointicker.data.repository.RegisterRepository
 import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
-import com.damlayagmur.bitcointicker.domain.usecase.AddFavoriteUseCase
-import com.damlayagmur.bitcointicker.domain.usecase.GetCoinListUseCase
-import com.damlayagmur.bitcointicker.domain.usecase.LoginUseCase
-import com.damlayagmur.bitcointicker.domain.usecase.RegisterUseCase
+import com.damlayagmur.bitcointicker.domain.usecase.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,4 +38,10 @@ object UseCaseModule {
     fun provideAddFavoriteUseCase(
         firestoreRepository: FirestoreRepository,
     ) = AddFavoriteUseCase(firestoreRepository)
+
+    @Provides
+    @Singleton
+    fun provideCheckFavoriteUseCase(
+        firestoreRepository: FirestoreRepository,
+    ) = CheckFavoriteUseCase(firestoreRepository)
 }
