@@ -4,6 +4,7 @@ import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.data.local.CoinDao
 import com.damlayagmur.bitcointicker.data.model.CoinDetail
 import com.damlayagmur.bitcointicker.data.model.CoinItem
+import com.damlayagmur.bitcointicker.data.model.detail.CoinDetailModel
 import com.damlayagmur.bitcointicker.data.remote.CoinService
 import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow
@@ -59,7 +60,7 @@ class CoinRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getCoinDetail(id: String): Flow<Resource<CoinDetail>> = flow {
+    override suspend fun getCoinDetail(id: String): Flow<Resource<CoinDetailModel>> = flow {
         emit(Resource.Loading())
         try {
             val coinDetail = service.getCoinDetail(id)

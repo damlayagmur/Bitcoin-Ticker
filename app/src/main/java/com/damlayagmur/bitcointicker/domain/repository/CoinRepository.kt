@@ -1,8 +1,8 @@
 package com.damlayagmur.bitcointicker.domain.repository
 
 import com.damlayagmur.bitcointicker.common.Resource
-import com.damlayagmur.bitcointicker.data.model.CoinDetail
 import com.damlayagmur.bitcointicker.data.model.CoinItem
+import com.damlayagmur.bitcointicker.data.model.detail.CoinDetailModel
 import kotlinx.coroutines.flow.Flow
 
 interface CoinRepository {
@@ -11,5 +11,5 @@ interface CoinRepository {
 
     suspend fun searchCoin(text: String): Flow<Resource<List<CoinItem>>>
 
-    suspend fun getCoinDetail(id: String): Flow<Resource<CoinDetail>>
+    suspend fun getCoinDetail(id: String): Flow<Resource<CoinDetailModel>>
 }
