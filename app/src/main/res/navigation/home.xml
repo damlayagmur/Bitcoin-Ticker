@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/coinDetailFragment"
         android:name="com.damlayagmur.bitcointicker.presentation.fragment.detail.CoinDetailFragment"
-        android:label="CoinDetailFragment" />
+        android:label="CoinDetailFragment" >
+        <argument
+            android:name="coinId"
+            app:argType="string" />
+    </fragment>
 </navigation>

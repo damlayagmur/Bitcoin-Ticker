@@ -28,4 +28,24 @@ class FirestoreRepository @Inject constructor(
     }.catch {
         emit(Resource.Error(it.message ?: ""))
     }
+
+    fun checkFavourite(coinId: String) = flow {
+        emit(Resource.Loading())
+        firebaseAuth.currentUser?.uid?.let {
+            val snapshot = firebaseFirestore.collection("favorites").document(it)
+                .collection("coins").get().await()
+
+            val data = snapshot.toObjects(FavoriteCoin::class.java)
+            if (data.isNotEmpty()) {
+                val coin = data.find { it.coinId == coinId }
+                if (coin == null)
+                    emit(Resource.Success(false))
+                else
+                    emit(Resource.Success(true))
+            } else
+                emit(Resource.Success(false))
+        }
+    }.catch {
+        emit(Resource.Error(it.message ?: ""))
+    }
 }

@@ -1,6 +1,7 @@
 package com.damlayagmur.bitcointicker.presentation.fragment.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
@@ -36,9 +37,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     private fun initComponents() {
         binding.etSearch.doAfterTextChanged { coinViewModel.searchCoin(it.toString()) }
-        binding.btnSearch.setOnClickListener {
-            navigate(HomeFragmentDirections.actionHomeFragmentToCoinDetailFragment())
-        }
+
     }
 
     private fun observeModel() {
@@ -66,14 +65,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         }
     }
 
+
     private fun prepareList(coins: List<CoinItem?>) {
         val fastConnectionsAdapter: FastItemAdapter<CoinAdapter> = FastItemAdapter()
+        val fastAdapter = FastAdapter.with(fastConnectionsAdapter)
         val layoutManager = LinearLayoutManager(context)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
 
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.adapter = FastAdapter.with(fastConnectionsAdapter)
+        binding.recyclerView.adapter = fastAdapter
         binding.recyclerView.itemAnimator = DefaultItemAnimator()
 
         for (item in coins) {
@@ -82,6 +82,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             coin.name = item?.name ?: ""
             coin.symbol = item?.symbol ?: ""
             fastConnectionsAdapter.add(coin)
+        }
+        fastAdapter.onClickListener = { _, _, item, _ ->
+            Log.d("TAG", "prepareList: ")
+            item.id?.let {
+                navigate(HomeFragmentDirections.actionHomeFragmentToCoinDetailFragment(it))
+            }
+            false
         }
     }
 }
