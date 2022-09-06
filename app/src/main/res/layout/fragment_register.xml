@@ -15,10 +15,10 @@
         android:visibility="gone" />
 
     <ImageView
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:layout_margin="4dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_width="@dimen/_128sdp"
+        android:layout_height="@dimen/_128sdp"
+        android:layout_margin="@dimen/_4sdp"
+        android:src="@drawable/app_logo" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="8dp"
             android:hint="@string/e_mail"
             android:inputType="textEmailAddress"
@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="8dp"
             android:hint="@string/password"
             android:inputType="textPassword"

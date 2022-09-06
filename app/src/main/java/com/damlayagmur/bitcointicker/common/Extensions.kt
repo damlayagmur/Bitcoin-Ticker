@@ -18,8 +18,8 @@ fun Fragment.navigate(navDirections: NavDirections) = findNavController().naviga
 fun ImageView.loadImage(url: String?) {
     if (url != null) {
         this.load(url) {
-            placeholder(R.drawable.ic_launcher_background)
-            error(R.drawable.ic_baseline_error_24)
+            placeholder(null)
+            error(R.drawable.ic_error)
             crossfade(false)
         }
     }
