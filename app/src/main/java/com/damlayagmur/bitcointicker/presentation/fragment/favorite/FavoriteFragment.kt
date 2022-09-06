@@ -6,12 +6,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.damlayagmur.bitcointicker.R
-import com.damlayagmur.bitcointicker.presentation.adapter.FavoritesAdapter
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.navigate
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.data.model.FavoriteCoin
 import com.damlayagmur.bitcointicker.databinding.FragmentFavoriteBinding
+import com.damlayagmur.bitcointicker.presentation.adapter.FavoritesAdapter
 import com.damlayagmur.bitcointicker.presentation.base.BaseFragment
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.FastItemAdapter
@@ -35,6 +35,7 @@ class FavoriteFragment : BaseFragment(R.layout.fragment_favorite) {
     }
 
     private fun initComponents() {
+        mFragmentNavigation.setBottomBarVisibility(true)
         val layoutManager = LinearLayoutManager(context)
 
         binding.recyclerView.layoutManager = layoutManager
@@ -52,11 +53,14 @@ class FavoriteFragment : BaseFragment(R.layout.fragment_favorite) {
         viewModel.favCoins.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     prepareList(it.data!!)
                 }
                 is Resource.Error -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                 }
             }
         }
