@@ -26,7 +26,7 @@ Modules are the collection of source files and build settings that allow you to 
 
   `:presentation` module contains fragment and view model classes
 
-# System Requirementss
+# System Requirements
 
 - Android Studio
 - Clean Architecture
