@@ -45,3 +45,11 @@ Modules are the collection of source files and build settings that allow you to 
 - Coin Detail Page by: coin image, name, symbol, hashing algorithm, price and price change percentage.
 - Favorites Page: When user click add favorites button in coin detail page. The coin added favorites list and show in this page. Favorites information stored in Firestore.
 - Search Features developed by Room Database. We get API datas and insert Room Database and search in this database. 
+
+# Screenshots
+<p align"center">
+<img src="Screenshots/SplashScreen.jpg" width="211" height="423" />
+<img src="Screenshots/NowPlayingScreen.jpg" width="211" height="423"  />
+<img src="Screenshots/MostPopularScreen.jpg" width="211" height="423"  />
+<img src="Screenshots/MovieDetailScreen.jpg" width="211" height="423" />
+</p>
