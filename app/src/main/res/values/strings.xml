@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Bitcoin Ticker</string>
+    <string name="default_error_message">Something went wrong!</string>
+    <string name="registerAccount">Do not have an account? Register</string>
+
+    <string name="checkLogin">"Please enter required fields"</string>
+    <string name="testMail">temp@temp.com</string>
+    <string name="testPassword">temp12345</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="test">test</string>
+    <string name="name">name</string>
+    <string name="symbol">symbol</string>
+    <string name="price">price</string>
+    <string name="coin">$</string>
+    <string name="hashing_algorithm">Hashing Algorithm</string>
+    <string name="change_percentage">Price Change Percentage in 24h</string>
+    <string name="description">Description</string>
+    <string name="add_to_fav">Add To Favorites</string>
+    <string name="delete_from_fav">Delete From Favorites</string>
+    <string name="sec">.sec</string>
+    <string name="refresh_time">Refresh Time</string>
 </resources>
