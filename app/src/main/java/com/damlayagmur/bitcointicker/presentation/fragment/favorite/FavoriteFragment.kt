@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.damlayagmur.bitcointicker.R
-import com.damlayagmur.bitcointicker.adapter.FavoritesAdapter
+import com.damlayagmur.bitcointicker.presentation.adapter.FavoritesAdapter
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.navigate
 import com.damlayagmur.bitcointicker.common.viewBinding

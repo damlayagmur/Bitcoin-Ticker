@@ -91,6 +91,5 @@ class FirestoreRepository @Inject constructor(
     }.catch {
         LogUtils.d("$this ${it.stackTrace}")
         emit(Resource.Error(it.message ?: ""))
-
     }
 }

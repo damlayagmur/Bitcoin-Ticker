@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.damlayagmur.bitcointicker.R
-import com.damlayagmur.bitcointicker.adapter.CoinAdapter
+import com.damlayagmur.bitcointicker.presentation.adapter.CoinAdapter
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.navigate
 import com.damlayagmur.bitcointicker.common.showToast
