@@ -6,6 +6,6 @@ import javax.inject.Inject
 class GetFavoritesUseCase @Inject constructor(
     private val firestoreRepository: FirestoreRepository
 ) {
-    suspend operator fun invoke() =
+    operator fun invoke() =
         firestoreRepository.getFavourites()
 }
