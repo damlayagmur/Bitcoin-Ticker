@@ -10,4 +10,12 @@
     <string name="e_mail">E-mail</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="test">test</string>
+    <string name="name">name</string>
+    <string name="symbol">symbol</string>
+    <string name="price">price</string>
+    <string name="coin">$</string>
+    <string name="hashing_algorithm">Hashing Algorithm</string>
+    <string name="change_percentage">Price Change Percentage in 24h</string>
+    <string name="description">Description</string>
 </resources>

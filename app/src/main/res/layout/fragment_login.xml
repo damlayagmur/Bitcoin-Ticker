@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp">
+    android:padding="@dimen/_8sdp">
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:elevation="1dp"
+        android:elevation="@dimen/_1sdp"
         android:visibility="gone"
         tools:ignore="MissingConstraints" />
 
@@ -22,24 +22,24 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_margin="4dp"
+            android:layout_width="@dimen/_128sdp"
+            android:layout_height="@dimen/_128sdp"
+            android:layout_margin="@dimen/_4sdp"
             android:src="@mipmap/ic_launcher" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:elevation="12dp">
+            android:layout_margin="@dimen/_4sdp"
+            android:elevation="@dimen/_12sdp">
 
             <EditText
-                android:id="@+id/lmail"
+                android:id="@+id/loginMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:drawableStart="@drawable/ic_baseline_email_24"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/_8sdp"
                 android:hint="@string/e_mail"
                 android:inputType="textEmailAddress"
                 android:text="@string/testMail"
@@ -50,16 +50,16 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:elevation="12dp">
+            android:layout_margin="@dimen/_4sdp"
+            android:elevation="@dimen/_12sdp">
 
             <EditText
-                android:id="@+id/lpassword"
+                android:id="@+id/loginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:drawableStart="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/_8sdp"
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:text="@string/testPassword"
@@ -71,11 +71,11 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
+            android:layout_margin="@dimen/_4sdp"
             android:text="@string/login" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/loginRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

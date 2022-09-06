@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    app:cardCornerRadius="12dp"
+    app:cardCornerRadius="@dimen/_12sdp"
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
@@ -15,52 +15,49 @@
 
         <ImageView
             android:id="@+id/ivCoin"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/_64sdp"
+            android:layout_height="@dimen/_64sdp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_launcher" />
 
         <LinearLayout
-            android:padding="6dp"
-            android:layout_toStartOf="@+id/iv_arrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/iv_arrow"
             android:layout_toEndOf="@+id/ivCoin"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_6sdp">
 
             <TextView
                 android:id="@+id/textView_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="name"
-                android:layout_marginBottom="2dp"
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:text="@string/name"
                 android:textColor="@color/default_text_color" />
 
             <TextView
                 android:id="@+id/textView_symbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:text="symbol" />
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:text="@string/symbol" />
 
             <TextView
                 android:id="@+id/textView_price"
                 android:layout_width="wrap_content"
-                android:layout_marginBottom="2dp"
                 android:layout_height="wrap_content"
-                android:text="price" />
-
+                android:layout_marginBottom="@dimen/_2sdp"
+                android:text="@string/price" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_arrow"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
-
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

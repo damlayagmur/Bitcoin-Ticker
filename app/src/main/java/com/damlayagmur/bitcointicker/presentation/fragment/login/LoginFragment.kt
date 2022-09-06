@@ -33,12 +33,12 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private fun initComponents() {
         binding.btnLogin.setOnClickListener {
-            if (binding.lmail.text.isEmpty() || binding.lpassword.text.isEmpty()) {
+            if (binding.loginMail.text.isEmpty() || binding.loginPassword.text.isEmpty()) {
                 requireContext().showToast(getString(R.string.checkLogin))
             } else {
                 viewModel.login(
-                    binding.lmail.text.toString(),
-                    binding.lpassword.text.toString()
+                    binding.loginMail.text.toString(),
+                    binding.loginPassword.text.toString()
                 )
             }
         }
@@ -50,8 +50,8 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
         }
         registerSpannable.setSpan(clickableSpannable, 24, 32, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding.textView.text = registerSpannable
-        binding.textView.movementMethod = LinkMovementMethod.getInstance()
+        binding.loginRegister.text = registerSpannable
+        binding.loginRegister.movementMethod = LinkMovementMethod.getInstance()
     }
 
     private fun observeModel() {

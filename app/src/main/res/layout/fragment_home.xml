@@ -17,15 +17,15 @@
         android:id="@+id/containerSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="12dp">
+        android:elevation="@dimen/_10sdp">
 
         <EditText
-            android:id="@+id/etSearch"
+            android:id="@+id/homeSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:drawableLeft="@drawable/ic_baseline_search_24"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/_7sdp"
             android:hint="Search Coin"
             android:textColor="@color/purple_500" />
 

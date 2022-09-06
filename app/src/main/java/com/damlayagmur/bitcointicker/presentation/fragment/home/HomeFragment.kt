@@ -35,7 +35,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     }
 
     private fun initComponents() {
-        binding.etSearch.doAfterTextChanged { coinViewModel.searchCoin(it.toString()) }
+        binding.homeSearch.doAfterTextChanged { coinViewModel.searchCoin(it.toString()) }
 
     }
 
@@ -48,7 +48,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.INVISIBLE
                     prepareList(it.data!!)
-
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.INVISIBLE
@@ -57,7 +56,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             }
         }
     }
-
 
     private fun prepareList(coins: List<CoinItem?>) {
         val coinAdapter: FastItemAdapter<CoinAdapter> = FastItemAdapter()
