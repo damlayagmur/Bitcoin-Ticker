@@ -13,31 +13,29 @@
         android:visibility="gone"
         tools:ignore="MissingConstraints" />
 
-    <LinearLayout
-        android:id="@+id/llContainer"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/containerSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:elevation="12dp">
 
         <EditText
             android:id="@+id/etSearch"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight=".8" />
+            android:backgroundTint="@android:color/transparent"
+            android:drawableLeft="@drawable/ic_baseline_search_24"
+            android:drawablePadding="8dp"
+            android:hint="Search Coin"
+            android:textColor="@color/purple_500" />
 
-        <Button
-            android:id="@+id/btnSearch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight=".2" />
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/llContainer"
+        android:layout_below="@+id/containerSearch"
         tools:ignore="MissingConstraints" />
 
 </RelativeLayout>

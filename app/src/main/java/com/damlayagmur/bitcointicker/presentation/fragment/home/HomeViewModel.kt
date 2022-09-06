@@ -37,8 +37,7 @@ class HomeViewModel @Inject constructor(
                         _coinList.value = Resource.Success(it.data!!)
                     }
                     is Resource.Error -> {
-                        _coinList.value =
-                            it.errorMessage?.let { message -> Resource.Error(message) }
+                        _coinList.value = Resource.Error(it.errorMessage)
                     }
                 }
             }
@@ -56,8 +55,7 @@ class HomeViewModel @Inject constructor(
                         _coinList.value = Resource.Success(it.data!!)
                     }
                     is Resource.Error -> {
-                        _coinList.value =
-                            it.errorMessage?.let { message -> Resource.Error(message) }
+                        _coinList.value = Resource.Error(it.errorMessage)
                     }
                 }
             }

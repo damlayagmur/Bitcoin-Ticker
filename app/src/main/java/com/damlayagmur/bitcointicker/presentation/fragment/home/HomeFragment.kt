@@ -1,9 +1,7 @@
 package com.damlayagmur.bitcointicker.presentation.fragment.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -12,6 +10,7 @@ import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.adapter.CoinAdapter
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.navigate
+import com.damlayagmur.bitcointicker.common.showToast
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.data.model.CoinItem
 import com.damlayagmur.bitcointicker.databinding.FragmentHomeBinding
@@ -53,13 +52,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.INVISIBLE
-                    it.errorMessage?.let { message ->
-                        Toast.makeText(
-                            context,
-                            message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    requireContext().showToast(it.errorMessage)
                 }
             }
         }
@@ -67,8 +60,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
 
     private fun prepareList(coins: List<CoinItem?>) {
-        val fastConnectionsAdapter: FastItemAdapter<CoinAdapter> = FastItemAdapter()
-        val fastAdapter = FastAdapter.with(fastConnectionsAdapter)
+        val coinAdapter: FastItemAdapter<CoinAdapter> = FastItemAdapter()
+        val fastAdapter = FastAdapter.with(coinAdapter)
         val layoutManager = LinearLayoutManager(context)
 
         binding.recyclerView.layoutManager = layoutManager
@@ -81,10 +74,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             coin.id = item?.id ?: ""
             coin.name = item?.name ?: ""
             coin.symbol = item?.symbol ?: ""
-            fastConnectionsAdapter.add(coin)
+            coinAdapter.add(coin)
         }
         fastAdapter.onClickListener = { _, _, item, _ ->
-            Log.d("TAG", "prepareList: ")
             item.id?.let {
                 navigate(HomeFragmentDirections.actionHomeFragmentToCoinDetailFragment(it))
             }
