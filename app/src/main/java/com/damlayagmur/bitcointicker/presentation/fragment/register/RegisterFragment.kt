@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.common.Resource
+import com.damlayagmur.bitcointicker.common.showToast
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.databinding.FragmentRegisterBinding
 import com.damlayagmur.bitcointicker.presentation.base.BaseFragment
@@ -19,14 +20,18 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initComponents()
+        observeModel()
+    }
+
+    private fun initComponents() {
         binding.btnRegister.setOnClickListener {
+            // TODO: Damlaa null check + show error msg plz
             viewModel.register(
-                requireActivity(),
                 binding.mail.text.toString(),
                 binding.password.text.toString()
             )
         }
-        observeModel()
     }
 
     private fun observeModel() {
@@ -38,7 +43,7 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
                     requireActivity().onBackPressed()
                 }
                 is Resource.Error -> {
-
+                    requireContext().showToast(it.errorMessage)
                 }
             }
         }
