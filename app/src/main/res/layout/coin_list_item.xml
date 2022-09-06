@@ -45,6 +45,6 @@
             android:layout_height="@dimen/_24sdp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+            android:src="@drawable/ic_arrow" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -29,12 +29,12 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mFragmentNavigation.setBottomBarVisibility(true)
         initComponents()
         observeModel()
     }
 
     private fun initComponents() {
+        mFragmentNavigation.setBottomBarVisibility(true)
         binding.homeSearch.doAfterTextChanged { coinViewModel.searchCoin(it.toString()) }
 
     }

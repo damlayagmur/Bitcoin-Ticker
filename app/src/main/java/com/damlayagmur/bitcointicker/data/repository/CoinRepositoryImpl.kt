@@ -5,6 +5,7 @@ import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.data.local.CoinDao
 import com.damlayagmur.bitcointicker.data.model.CoinItem
 import com.damlayagmur.bitcointicker.data.model.detail.CoinDetailModel
+import com.damlayagmur.bitcointicker.data.model.detail.MarketData
 import com.damlayagmur.bitcointicker.data.remote.CoinService
 import com.damlayagmur.bitcointicker.domain.repository.CoinRepository
 import kotlinx.coroutines.flow.Flow
@@ -78,6 +79,31 @@ class CoinRepositoryImpl @Inject constructor(
         try {
             val coinDetail = service.getCoinDetail(id)
             emit(Resource.Success(coinDetail))
+        } catch (e: HttpException) {
+            LogUtils.d("$this ${e.stackTrace}")
+            emit(
+                Resource.Error(
+                    errorMessage = "Something went wrong!",
+                    data = null
+                )
+            )
+        } catch (e: IOException) {
+            LogUtils.d("$this ${e.stackTrace}")
+            Resource.Error(
+                errorMessage = "Couldn't reach server,check your internet connection",
+                data = null
+            )
+        }
+    }
+
+    /**
+     * Get coin price info by id from API
+     */
+    override suspend fun getCoinPrice(id: String): Flow<Resource<MarketData>> = flow {
+        emit(Resource.Loading())
+        try {
+            val coinDetail = service.getCoinDetail(id)
+            emit(Resource.Success(coinDetail.market_data))
         } catch (e: HttpException) {
             LogUtils.d("$this ${e.stackTrace}")
             emit(
