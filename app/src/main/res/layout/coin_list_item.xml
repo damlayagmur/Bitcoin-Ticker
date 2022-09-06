@@ -20,9 +20,10 @@
             android:id="@+id/textView_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/iv_arrow"
             android:gravity="start"
             android:padding="@dimen/_6sdp"
-            android:textColor="@color/black"
+            android:text="asd"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
             tools:ignore="RtlHardcoded" />
@@ -33,7 +34,19 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textView_name"
             android:layout_marginStart="@dimen/_6sdp"
+            android:layout_toStartOf="@+id/iv_arrow"
             android:fontFamily="sans-serif"
+            android:text="asd"
             android:textSize="@dimen/_12sdp" />
+
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24" />
+
     </RelativeLayout>
+
 </androidx.cardview.widget.CardView>

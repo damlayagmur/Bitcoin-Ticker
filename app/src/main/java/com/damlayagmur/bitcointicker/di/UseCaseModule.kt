@@ -44,4 +44,16 @@ object UseCaseModule {
     fun provideCheckFavoriteUseCase(
         firestoreRepository: FirestoreRepository,
     ) = CheckFavoriteUseCase(firestoreRepository)
+
+    @Provides
+    @Singleton
+    fun provideGetFavoritesUseCase(
+        firestoreRepository: FirestoreRepository,
+    ) = GetFavoritesUseCase(firestoreRepository)
+
+    @Provides
+    @Singleton
+    fun provideDeleteFavoriteUseCase(
+        firestoreRepository: FirestoreRepository,
+    ) = DeleteFavoriteUseCase(firestoreRepository)
 }
