@@ -6,10 +6,18 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="1dp"
+        android:visibility="gone" />
+
     <ImageView
         android:layout_width="128dp"
-        android:layout_margin="4dp"
         android:layout_height="128dp"
+        android:layout_margin="4dp"
         android:src="@mipmap/ic_launcher" />
 
     <androidx.cardview.widget.CardView
@@ -19,13 +27,13 @@
         android:elevation="12dp">
 
         <EditText
-            android:id="@+id/mail"
+            android:id="@+id/registerMail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:drawableLeft="@drawable/ic_baseline_email_24"
             android:drawablePadding="8dp"
-            android:hint="E-mail"
+            android:hint="@string/e_mail"
             android:inputType="textEmailAddress"
             android:textColor="@color/purple_500" />
 
@@ -38,13 +46,13 @@
         android:elevation="12dp">
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/registerPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
             android:drawableLeft="@drawable/ic_baseline_lock_24"
             android:drawablePadding="8dp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textColor="@color/purple_500" />
 
@@ -53,9 +61,9 @@
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
-        android:layout_margin="4dp"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:layout_margin="4dp"
+        android:text="@string/register" />
 
 
 </LinearLayout>

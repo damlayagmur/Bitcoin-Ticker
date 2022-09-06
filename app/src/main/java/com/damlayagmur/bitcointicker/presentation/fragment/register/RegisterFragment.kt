@@ -26,11 +26,14 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
 
     private fun initComponents() {
         binding.btnRegister.setOnClickListener {
-            // TODO: Damlaa null check + show error msg plz
-            viewModel.register(
-                binding.mail.text.toString(),
-                binding.password.text.toString()
-            )
+            if (binding.registerMail.text.isEmpty() || binding.registerPassword.text.isEmpty()) {
+                requireContext().showToast(getString(R.string.checkLogin))
+            } else {
+                viewModel.register(
+                    binding.registerMail.text.toString(),
+                    binding.registerPassword.text.toString()
+                )
+            }
         }
     }
 
@@ -38,11 +41,13 @@ class RegisterFragment : BaseFragment(R.layout.fragment_register) {
         viewModel.user.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
                     requireActivity().onBackPressed()
                 }
                 is Resource.Error -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     requireContext().showToast(it.errorMessage)
                 }
             }
