@@ -1,10 +1,10 @@
+# Bitcoin-Ticker 
+
 ![Latest Version](https://img.shields.io/badge/latestVersion-1.0-yellow)
 ![Kotlin](https://img.shields.io/badge/language-kotlin-blue)
 ![Mininum SDK Version](https://img.shields.io/badge/minSDK-21-orange)
 ![Android Gradle Version](https://img.shields.io/badge/androidGradleVersion-7.2.2-green)
 ![Gradle Version](https://img.shields.io/badge/gradleVersion-7.3.3-informational)
-
-# Bitcoin-Ticker 
 
 ## 📦 Modules
 
