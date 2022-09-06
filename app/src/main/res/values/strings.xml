@@ -2,4 +2,11 @@
     <string name="app_name">Bitcoin Ticker</string>
     <string name="default_error_message">Something went wrong!</string>
     <string name="registerAccount">Do not have an account? Register</string>
+
+    <string name="checkLogin">"Please enter required fields"</string>
+    <string name="testMail">temp@temp.com</string>
+    <string name="testPassword">temp12345</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="login">Login</string>
 </resources>

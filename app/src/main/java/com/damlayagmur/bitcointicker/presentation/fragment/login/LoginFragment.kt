@@ -33,18 +33,17 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
     private fun initComponents() {
         binding.btnLogin.setOnClickListener {
-            // TODO: Damlaa null check + show error msg plz
-            viewModel.login(
-                binding.lmail.text.toString(),
-                binding.lpassword.text.toString()
-            )
+            if (binding.lmail.text.isEmpty() || binding.lpassword.text.isEmpty()) {
+                requireContext().showToast(getString(R.string.checkLogin))
+            } else {
+                viewModel.login(
+                    binding.lmail.text.toString(),
+                    binding.lpassword.text.toString()
+                )
+            }
         }
 
-        binding.btnRegister.setOnClickListener {
-            navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-        }
-
-        val registerSpannable = SpannableString("Do not have an account? Register")
+        val registerSpannable = SpannableString(getString(R.string.registerAccount))
         val clickableSpannable: ClickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
