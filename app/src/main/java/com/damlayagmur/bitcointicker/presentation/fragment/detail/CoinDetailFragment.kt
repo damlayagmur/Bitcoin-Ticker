@@ -3,18 +3,23 @@ package com.damlayagmur.bitcointicker.presentation.fragment.detail
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import com.blankj.utilcode.util.StringUtils
 import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.common.Resource
 import com.damlayagmur.bitcointicker.common.loadImage
+import com.damlayagmur.bitcointicker.common.showToast
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.data.model.detail.CoinDetailModel
 import com.damlayagmur.bitcointicker.databinding.FragmentCoinDetailBinding
 import com.damlayagmur.bitcointicker.presentation.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
@@ -30,8 +35,21 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
 
         coinDetailViewModel.checkFavorite(args.coinId)
 
+        initComponents()
         observeModel()
+    }
 
+    private fun initComponents() {
+        mFragmentNavigation.setBottomBarVisibility(false)
+
+        binding.ivRefresh.setOnClickListener {
+            val refreshTime = binding.etRefresh.text.toString()
+            if (refreshTime.isNotEmpty()) {
+                getCoinPrice(refreshTime.toInt())
+                binding.ivRefresh.isEnabled = false
+                binding.etRefresh.isEnabled = false
+            }
+        }
         binding.btnFav.setOnClickListener {
             coinDetailViewModel.favoriteButtonClick()
         }
@@ -49,24 +67,37 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
                 }
                 is Resource.Error -> {
                     binding.progressBar.visibility = View.INVISIBLE
-                    it.errorMessage?.let { message ->
-                        Toast.makeText(
-                            context,
-                            message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    requireContext().showToast(it.errorMessage)
+                }
+            }
+        }
+        coinDetailViewModel.coinPrice.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is Resource.Success -> {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.tvCurrentPrice.text = it.data?.current_price?.usd.toString()
+                }
+                is Resource.Error -> {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    requireContext().showToast(it.errorMessage)
                 }
             }
         }
         coinDetailViewModel.favStatus.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     prepareFavButton(it.data)
                 }
                 is Resource.Error -> {
+                    binding.progressBar.visibility = View.INVISIBLE
+                    requireContext().showToast(it.errorMessage)
                 }
             }
         }
@@ -93,11 +124,11 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
 
     private fun prepareFavButton(status: Boolean?) {
         status.let {
-            var drawable: Int = R.drawable.ic_baseline_star_border_24
-            var text = "Add To Favorite list"
+            var drawable: Int = R.drawable.ic_star_border
+            var text = StringUtils.getString(R.string.add_to_fav)
             if (status!!) {
-                text = "in the fav list"
-                drawable = R.drawable.ic_baseline_star_24
+                text = StringUtils.getString(R.string.delete_from_fav)
+                drawable = R.drawable.ic_baseline_star
             }
             binding.btnFav.setCompoundDrawablesWithIntrinsicBounds(
                 ContextCompat.getDrawable(
@@ -106,6 +137,15 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
                 ), null, null, null
             )
             binding.btnFav.text = text
+        }
+    }
+
+    private fun getCoinPrice(refreshTime: Int) {
+        lifecycleScope.launch(Dispatchers.IO) {
+            while (true) {
+                coinDetailViewModel.getPrice(args.coinId)
+                delay(refreshTime.toLong() * 1000)
+            }
         }
     }
 }

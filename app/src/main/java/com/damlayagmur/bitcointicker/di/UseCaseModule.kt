@@ -23,6 +23,12 @@ object UseCaseModule {
 
     @Provides
     @Singleton
+    fun provideGetCoinPriceUseCase(
+        coinRepository: CoinRepository,
+    ) = GetCoinPriceUseCase(coinRepository)
+
+    @Provides
+    @Singleton
     fun provideRegisterUseCase(
         registerRepository: RegisterRepository,
     ) = RegisterUseCase(registerRepository)

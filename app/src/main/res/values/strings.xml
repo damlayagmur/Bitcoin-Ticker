@@ -18,4 +18,8 @@
     <string name="hashing_algorithm">Hashing Algorithm</string>
     <string name="change_percentage">Price Change Percentage in 24h</string>
     <string name="description">Description</string>
+    <string name="add_to_fav">Add To Favorites</string>
+    <string name="delete_from_fav">Delete From Favorites</string>
+    <string name="sec">.sec</string>
+    <string name="refresh_time">Refresh Time</string>
 </resources>
