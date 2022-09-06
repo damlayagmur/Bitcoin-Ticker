@@ -1,6 +1,5 @@
 package com.damlayagmur.bitcointicker.presentation.fragment.detail
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,6 +8,7 @@ import com.damlayagmur.bitcointicker.data.model.FavoriteCoin
 import com.damlayagmur.bitcointicker.data.model.detail.CoinDetailModel
 import com.damlayagmur.bitcointicker.domain.usecase.AddFavoriteUseCase
 import com.damlayagmur.bitcointicker.domain.usecase.CheckFavoriteUseCase
+import com.damlayagmur.bitcointicker.domain.usecase.DeleteFavoriteUseCase
 import com.damlayagmur.bitcointicker.domain.usecase.GetCoinDetailUseCase
 import com.damlayagmur.bitcointicker.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +19,7 @@ import javax.inject.Inject
 class CoinDetailViewModel @Inject constructor(
     private val getCoinDetailUseCase: GetCoinDetailUseCase,
     private val addFavoriteUseCase: AddFavoriteUseCase,
+    private val deleteFavoriteUseCase: DeleteFavoriteUseCase,
     private val checkFavoriteUseCase: CheckFavoriteUseCase,
 ) : BaseViewModel() {
 
@@ -41,8 +42,7 @@ class CoinDetailViewModel @Inject constructor(
                         _coinDetail.value = Resource.Success(it.data!!)
                     }
                     is Resource.Error -> {
-                        _coinDetail.value =
-                            it.errorMessage?.let { message -> Resource.Error(message) }
+                        _coinDetail.value = Resource.Error(it.errorMessage)
                     }
                 }
             }
@@ -59,34 +59,62 @@ class CoinDetailViewModel @Inject constructor(
                     _favStatus.value = Resource.Success(it.data)
                 }
                 is Resource.Error -> {
-                    _favStatus.value =
-                        it.errorMessage?.let { message -> Resource.Error(message) }
+                    _favStatus.value = Resource.Error(it.errorMessage)
                 }
             }
         }
     }
 
-    fun addFavorite() = viewModelScope.launch {
+    fun favoriteButtonClick() {
+        _favStatus.value?.data.let {
+            if (it!!)
+                deleteFavorite()
+            else
+                addFavorite()
+        }
+    }
+
+    private fun addFavorite() = viewModelScope.launch {
         val coin = _coinDetail.value?.data
         val favCoin = FavoriteCoin(
             coinId = coin?.id,
             name = coin?.name,
-            description = coin?.description?.en,
+            symbol = coin?.symbol,
             img = coin?.image?.large,
             currentPrice = coin?.market_data?.current_price?.usd
         )
         addFavoriteUseCase.invoke(favCoin).collect {
             when (it) {
                 is Resource.Loading -> {
-                    Log.d("TAG", "addFavorite: ")
+                    _favStatus.value = Resource.Loading()
                 }
                 is Resource.Success -> {
                     _favStatus.value = Resource.Success(true)
                 }
                 is Resource.Error -> {
-                    Log.d("TAG", "addFavorite: ")
+                    _favStatus.value = Resource.Error(it.errorMessage)
                 }
             }
         }
     }
+
+    private fun deleteFavorite() = viewModelScope.launch {
+        val coin = _coinDetail.value?.data
+        if (!coin?.id.isNullOrEmpty()) {
+            deleteFavoriteUseCase.invoke(coin?.id!!).collect {
+                when (it) {
+                    is Resource.Loading -> {
+                        _favStatus.value = Resource.Loading()
+                    }
+                    is Resource.Success -> {
+                        _favStatus.value = Resource.Success(false)
+                    }
+                    is Resource.Error -> {
+                        _favStatus.value = Resource.Error(it.errorMessage)
+                    }
+                }
+            }
+        }
+    }
+
 }

@@ -7,9 +7,9 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import coil.api.load
 import com.damlayagmur.bitcointicker.R
 import com.damlayagmur.bitcointicker.common.Resource
+import com.damlayagmur.bitcointicker.common.loadImage
 import com.damlayagmur.bitcointicker.common.viewBinding
 import com.damlayagmur.bitcointicker.data.model.detail.CoinDetailModel
 import com.damlayagmur.bitcointicker.databinding.FragmentCoinDetailBinding
@@ -33,7 +33,7 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
         observeModel()
 
         binding.btnFav.setOnClickListener {
-            coinDetailViewModel.addFavorite()
+            coinDetailViewModel.favoriteButtonClick()
         }
     }
 
@@ -41,13 +41,14 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
         coinDetailViewModel.coinDetailLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
-                    //binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.VISIBLE
                 }
                 is Resource.Success -> {
+                    binding.progressBar.visibility = View.INVISIBLE
                     prepareComponents(it.data)
                 }
                 is Resource.Error -> {
-                    //binding.progressBar.visibility = View.INVISIBLE
+                    binding.progressBar.visibility = View.INVISIBLE
                     it.errorMessage?.let { message ->
                         Toast.makeText(
                             context,
@@ -72,7 +73,7 @@ class CoinDetailFragment : BaseFragment(R.layout.fragment_coin_detail) {
     }
 
     private fun prepareComponents(data: CoinDetailModel?) {
-        binding.ivCoin.load(data?.image?.large)
+        binding.ivCoin.loadImage(data?.image?.large)
         binding.tvName.text = data?.name
         binding.tvSymbol.text = data?.symbol
         binding.tvAlgorithm.text = data?.hashing_algorithm ?: "N/A"
