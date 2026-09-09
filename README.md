@@ -55,3 +55,4 @@ Modules are the collection of source files and build settings that allow you to 
 <img src="screenshots/Search.png" width="211" height="423" />
 <img src="screenshots/Favorite.png" width="211" height="423" />
 </p>
+<img src="screenshots/Favorite.png" width="211" height="423" />
